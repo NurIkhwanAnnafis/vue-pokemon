@@ -14,7 +14,7 @@ handleFetch()
       :dataSource="home.dataSource.data"
       :pagination="false"
       size="small"
-      :customRow="(record) => ({ onClick: () => handleRowClick(record) })"
+      :customRow="(record: any) => ({ onClick: () => handleRowClick(record) })"
     />
 
     <div class="pagination">

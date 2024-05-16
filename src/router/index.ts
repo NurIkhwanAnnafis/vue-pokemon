@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+// @ts-ignore
 import MyPokemon from '../views/MyPokemon.vue'
 import Detail from '../views/Detail.vue'
 

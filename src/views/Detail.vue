@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import useDetail from './controllers/useDetail'
 
 const { reset, detail, handleFetchDetail } = useDetail
