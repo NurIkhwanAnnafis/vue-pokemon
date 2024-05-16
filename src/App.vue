@@ -1,14 +1,15 @@
-<script setup lang="ts">
+<script setup>
 import { RouterView } from 'vue-router'
-import Header from './components/Header.vue'
-import Loading from './components/Loading.vue'
 import { useLoadingStore } from './stores/layout'
+
+import Loading from './components/Loading.vue'
+import Header from './components/Header.vue'
 
 const storeLoading = useLoadingStore()
 </script>
 
 <template>
-  <Header />
+  <Header></Header>
   <div class="wrapper">
     <div v-if="storeLoading.loading">
       <Loading />

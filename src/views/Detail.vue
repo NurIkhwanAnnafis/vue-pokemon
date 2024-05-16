@@ -1,5 +1,4 @@
 <script setup>
-import { reactive } from 'vue'
 import useDetail from './controllers/useDetail'
 
 const { reset, detail, handleFetchDetail } = useDetail
