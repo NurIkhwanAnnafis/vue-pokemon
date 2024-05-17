@@ -9,5 +9,6 @@ export const columns = [
         title: 'Owned',
         dataIndex: 'count',
         key: 'count',
+        align: 'right'
     },
 ]

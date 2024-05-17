@@ -1,5 +1,5 @@
 interface DataSource {
-    data: object[]
+    data: { name: string, url: string }[]
     meta: { total: number }
 }
 
@@ -10,10 +10,14 @@ interface ListType {
 }
 
 interface Moves {
-    name: string
+    move: {
+        name: string
+        url: string
+    }
 }
 
 interface DataDetail {
+    name: string
     moves: Moves[]
     types: ListType[]
     sprites: {

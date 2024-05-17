@@ -1,11 +1,12 @@
 import { fetchListPokemon } from "@/apis/pokemon";
 import { reactive } from "vue"
 import { useLoadingStore } from "@/stores/layout";
+import { usePokemon } from "@/stores/pokemon";
 import { getUrlId } from "../configs/utils";
 import router from "@/router";
 
 interface DataSource {
-    data: object[]
+    data: { name: string, url: string }[]
     meta: { total: number }
 }
 
@@ -25,6 +26,7 @@ const reset = () => Object.assign(home, initialState);
 
 const handleFetch = async (offset: number = 0) => {
     useLoadingStore().setLoading(true);
+    const myListPokemon = usePokemon().getListPokemon();
     const params = {
         limit: 10,
         offset: offset
@@ -32,7 +34,9 @@ const handleFetch = async (offset: number = 0) => {
 
     const res: DataSource = await fetchListPokemon(params);
 
-    home.dataSource = { data: res.data, meta: res.meta };
+    const newData = res.data.map((data: { name: string, url: string }) => ({ ...data, count: myListPokemon.filter(pokemon => String(pokemon.id) === getUrlId(data.url)).length }));
+
+    home.dataSource = { data: newData, meta: res.meta };
     useLoadingStore().setLoading(false);
 }
 

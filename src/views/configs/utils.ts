@@ -4,6 +4,16 @@ interface ListType {
     }
 }
 
+interface DataDetail {
+    name: string
+    types: ListType[]
+    nickname: string
+    sprites: {
+        front_default: string
+    }
+    id: string
+}
+
 export const getUrlId = (url: string) => {
     const arr = url.split('/');
     const id = arr[arr.length - 2];
@@ -28,4 +38,14 @@ export const normalizeTypes = (listType: ListType[]) => {
     }, '');
 
     return result;
+}
+
+export const checkPokemonIsTaken = (list: DataDetail[], nickname: string, name: string) => {
+    if (!list || !Array.isArray(list)) return false;
+    if (!nickname) return true;
+    if (!name) return false;
+
+    const isTaken = list.some(val => val.nickname.toLowerCase() === nickname.toLowerCase() && val.name.toLowerCase() === name.toLowerCase());
+
+    return isTaken;
 }
