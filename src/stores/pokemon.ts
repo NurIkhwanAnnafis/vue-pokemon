@@ -16,7 +16,7 @@ interface DataDetail {
     id: string
 }
 
-export const usePokemon = defineStore('pokemon', () => {
+export const usePokemonStore = defineStore('pokemon', () => {
     const getListPokemon = (): DataDetail[] | [] => {
         const mypokemon = localStorage.getItem('mypokemon');
 
@@ -29,5 +29,10 @@ export const usePokemon = defineStore('pokemon', () => {
         localStorage.setItem('mypokemon', JSON.stringify([...myListPokemon, values]))
     }
 
-    return { getListPokemon, setListPokemon };
+    const setListAllPokemon = (values: DataDetail[]) => {
+
+        localStorage.setItem('mypokemon', JSON.stringify(values))
+    }
+
+    return { getListPokemon, setListPokemon, setListAllPokemon };
 })

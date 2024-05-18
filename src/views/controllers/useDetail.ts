@@ -2,7 +2,7 @@ import { fetchListPokemonById } from "@/apis/pokemon";
 import { reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useLoadingStore } from "@/stores/layout";
-import { usePokemon } from "@/stores/pokemon";
+import { usePokemonStore } from "@/stores/pokemon";
 import { message } from "ant-design-vue";
 import { checkPokemonIsTaken } from "../configs/utils";
 
@@ -83,14 +83,14 @@ const handleOpen = () => {
 const handleClose = () => modal.value = false;
 
 const onFinish = (values: FormState) => {
-    const currentListPokemon = usePokemon().getListPokemon();
+    const currentListPokemon = usePokemonStore().getListPokemon();
     const isTaken = checkPokemonIsTaken(currentListPokemon, values.nickname, detail.value?.name || '')
     if (isTaken) {
         return message.warning('Nickname already used');
     }
 
     const detailPokemon = { ...detail.value, nickname: values.nickname };
-    usePokemon().setListPokemon(<DetailSave>detailPokemon);
+    usePokemonStore().setListPokemon(<DetailSave>detailPokemon);
     resetForm();
     message.success('Now pokemon is in your bag!');
     handleClose();

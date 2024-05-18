@@ -12,7 +12,9 @@ handleFetchDetail()
 <template>
   <div style="margin-top: 40px">
     <div v-if="detail">
-      <h2><i>pokemon name</i></h2>
+      <h2>
+        <i>{{ detail.name }}</i>
+      </h2>
       <div class="box-pokemon">
         <img :src="detail.sprites.front_default" alt="" />
       </div>

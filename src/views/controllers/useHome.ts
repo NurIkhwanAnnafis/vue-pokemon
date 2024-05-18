@@ -1,7 +1,7 @@
 import { fetchListPokemon } from "@/apis/pokemon";
 import { reactive } from "vue"
 import { useLoadingStore } from "@/stores/layout";
-import { usePokemon } from "@/stores/pokemon";
+import { usePokemonStore } from "@/stores/pokemon";
 import { getUrlId } from "../configs/utils";
 import router from "@/router";
 
@@ -26,7 +26,7 @@ const reset = () => Object.assign(home, initialState);
 
 const handleFetch = async (offset: number = 0) => {
     useLoadingStore().setLoading(true);
-    const myListPokemon = usePokemon().getListPokemon();
+    const myListPokemon = usePokemonStore().getListPokemon();
     const params = {
         limit: 10,
         offset: offset
